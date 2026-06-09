@@ -1,0 +1,16 @@
+package com.joel.spiderbiblioteca.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class ResourceNotFoundException extends RuntimeException {
+
+    public ResourceNotFoundException(String mensaje) {
+        super(mensaje);
+    }
+
+    public ResourceNotFoundException(String recurso, Long id) {
+        super(recurso + " con id " + id + " no encontrado");
+    }
+}

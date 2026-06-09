@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema base de la aplicación -->
+    <style name="Theme.SpiderBiblioteca" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Tema del splash screen nativo (se aplica en el AndroidManifest a la Activity) -->
+    <style name="Theme.SpiderBiblioteca.Splash" parent="Theme.SplashScreen">
+        <!-- Fondo rojo Spider-Man -->
+        <item name="windowSplashScreenBackground">#CC0000</item>
+        <!-- Icono adaptativo: fondo rojo + tu imagen, sin círculo blanco -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_adaptive</item>
+        <!-- Después del splash, cambia al tema base de la app -->
+        <item name="postSplashScreenTheme">@style/Theme.SpiderBiblioteca</item>
+    </style>
+
+</resources>

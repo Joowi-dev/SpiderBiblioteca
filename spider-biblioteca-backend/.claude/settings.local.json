@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Get-ChildItem -Recurse -Depth 3 | Select-Object FullName, PSIsContainer | Format-Table -AutoSize\")",
+      "Bash(powershell -Command \"Get-ChildItem -Path 'src\\\\test' -Recurse -Include '*.java' | Select-Object FullName\")",
+      "Bash(powershell -Command \"Get-ChildItem -Path 'src\\\\main\\\\java\\\\com\\\\joel\\\\spiderbiblioteca' -Recurse | Select-Object FullName, PSIsContainer | Format-Table -AutoSize\")",
+      "Bash(mvn compile *)"
+    ]
+  }
+}

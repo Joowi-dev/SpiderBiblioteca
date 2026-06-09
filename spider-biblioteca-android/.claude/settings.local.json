@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Rename-Item *)",
+      "PowerShell(Rename-Item *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Nitro V15\\\\Desktop\\\\SpiderBiblioteca\" -Directory)",
+      "Bash(Select-Object Name)",
+      "PowerShell(tree \"C:\\\\Users\\\\Nitro V15\\\\Desktop\\\\SpiderBiblioteca\\\\spider-biblioteca-backend\\\\src\\\\main\\\\java\\\\com\\\\joel\\\\spiderbiblioteca\" -Depth 3)"
+    ]
+  }
+}

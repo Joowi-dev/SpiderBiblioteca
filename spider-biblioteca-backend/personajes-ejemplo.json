@@ -1,0 +1,102 @@
+[
+  {
+    "nombre": "Spider-Man",
+    "nombreReal": "Peter Parker",
+    "apodos": "Spidey, El Trepamuros, El Hombre Araña",
+    "poderes": "Fuerza sobrehumana, agilidad, sentido de araña, trepar por superficies, lanzar telarañas con lanzatelarañas mecánicos",
+    "descripcion": "Peter Parker es un estudiante de secundaria de Queens, Nueva York, que tras ser mordido por una araña radiactiva adquirió poderes sobrehumanos. Tras la muerte de su tío Ben, aprende que con un gran poder viene una gran responsabilidad.",
+    "primeraAparicion": "Amazing Fantasy #15 (1962)",
+    "tipo": "heroe",
+    "imagenUrl": "spiderman.png"
+  },
+  {
+    "nombre": "Miles Morales",
+    "nombreReal": "Miles Morales",
+    "apodos": "Spider-Man (Ultimate), El Otro Spider-Man",
+    "poderes": "Fuerza sobrehumana, agilidad, sentido de araña, camuflaje, veneno bioeléctrico (venom blast), trepar superficies",
+    "descripcion": "Miles Morales es un adolescente afrolatino de Brooklyn que se convierte en Spider-Man tras ser picado por una araña radiactiva de un universo alternativo. Hereda el manto de Peter Parker en su universo.",
+    "primeraAparicion": "Ultimate Fallout #4 (2011)",
+    "tipo": "heroe",
+    "imagenUrl": "miles.png"
+  },
+  {
+    "nombre": "Spider-Gwen",
+    "nombreReal": "Gwen Stacy",
+    "apodos": "Ghost-Spider, Spider-Woman",
+    "poderes": "Fuerza sobrehumana, agilidad, sentido de araña, lanzar telarañas orgánicas, reflejos mejorados",
+    "descripcion": "En su universo alternativo (Tierra-65), fue Gwen Stacy quien recibió los poderes de araña en lugar de Peter Parker. Tras la muerte de su Peter Parker, se convierte en la heroína conocida como Ghost-Spider.",
+    "primeraAparicion": "Edge of Spider-Verse #2 (2014)",
+    "tipo": "heroe",
+    "imagenUrl": "spidergwen.png"
+  },
+  {
+    "nombre": "Venom",
+    "nombreReal": "Eddie Brock",
+    "apodos": "El Simbionte, Lethal Protector",
+    "poderes": "Fuerza y agilidad sobrehumanas, mimetismo de apariencia, lengua extensible, inmunidad al sentido de araña de Spider-Man, generar equipamiento del simbionte",
+    "descripcion": "Eddie Brock es un reportero que alberga al simbionte alienígena Venom, creando una de las amenazas más icónicas de Spider-Man. Aunque comenzó como villano, ha evolucionado hacia el papel de protector letal.",
+    "primeraAparicion": "The Amazing Spider-Man #300 (1988)",
+    "tipo": "antiheroe",
+    "imagenUrl": "venom.png"
+  },
+  {
+    "nombre": "Green Goblin",
+    "nombreReal": "Norman Osborn",
+    "apodos": "El Duende Verde, El Campeón",
+    "poderes": "Fórmula Duende: fuerza, agilidad y velocidad sobrehumanas, regeneración acelerada. Equipamiento: Planeador Duende, calabazas explosivas, rayos fantasma.",
+    "descripcion": "Norman Osborn es un empresario corrupto y genio científico que se convierte en el Green Goblin tras exponerse a la fórmula Duende. Es considerado el mayor archivillano de Spider-Man, responsable de la muerte de Gwen Stacy.",
+    "primeraAparicion": "The Amazing Spider-Man #14 (1964)",
+    "tipo": "villano",
+    "imagenUrl": "greengoblin.png"
+  },
+  {
+    "nombre": "Doctor Octopus",
+    "nombreReal": "Otto Octavius",
+    "apodos": "Doc Ock, El Superior Spider-Man",
+    "poderes": "Cuatro tentáculos de adamantio telepáticamente controlados, genio científico, en el cuerpo de Peter Parker: todos los poderes de Spider-Man",
+    "descripcion": "Otto Octavius es un físico nuclear que quedó fusionado con cuatro brazos robóticos tras un accidente. Ha sido uno de los principales enemigos de Spider-Man, llegando incluso a intercambiar cuerpos con él.",
+    "primeraAparicion": "The Amazing Spider-Man #3 (1963)",
+    "tipo": "villano",
+    "imagenUrl": "docock.png"
+  },
+  {
+    "nombre": "Mary Jane Watson",
+    "nombreReal": "Mary Jane Watson",
+    "apodos": "MJ, La Chica de Peter",
+    "poderes": "Sin poderes sobrenaturales. Actriz y modelo profesional, gran valentía e inteligencia emocional.",
+    "descripcion": "Mary Jane Watson es el amor de la vida de Peter Parker. Conocida por su frase icónica, es una actriz y modelo que conoce la identidad secreta de Spider-Man y lo apoya incondicionalmente.",
+    "primeraAparicion": "The Amazing Spider-Man #25 (1965)",
+    "tipo": "aliado",
+    "imagenUrl": "maryjane.png"
+  },
+  {
+    "nombre": "Aunt May",
+    "nombreReal": "May Parker",
+    "apodos": "Tía May, Tía May Parker",
+    "poderes": "Sin poderes. Fuerza moral excepcional, sabiduría y compasión inquebrantables.",
+    "descripcion": "May Parker es la tía y figura materna de Peter Parker. Tras la muerte de su esposo Ben, cría a Peter sola. Representa los valores morales que guían a Spider-Man: responsabilidad, sacrificio y bondad.",
+    "primeraAparicion": "Amazing Fantasy #15 (1962)",
+    "tipo": "aliado",
+    "imagenUrl": "auntmay.png"
+  },
+  {
+    "nombre": "Black Cat",
+    "nombreReal": "Felicia Hardy",
+    "apodos": "La Gata Negra",
+    "poderes": "Agilidad y reflejos sobrehumanos, habilidades acrobáticas, garra retráctil, inducir mala suerte en sus oponentes (en algunas versiones)",
+    "descripcion": "Felicia Hardy es una ladrona de guante blanco que se convierte en aliada y amor interés de Spider-Man. Su compleja relación con Peter Parker la sitúa entre el bien y el mal.",
+    "primeraAparicion": "The Amazing Spider-Man #194 (1979)",
+    "tipo": "antiheroe",
+    "imagenUrl": "blackcat.png"
+  },
+  {
+    "nombre": "Sandman",
+    "nombreReal": "Flint Marko",
+    "apodos": "El Hombre de Arena",
+    "poderes": "Transformar su cuerpo en arena, control total de la arena, tamaño variable, regeneración total mientras haya arena",
+    "descripcion": "Flint Marko es un criminal que adquiere poderes al caer en un campo de pruebas nucleares que altera su estructura molecular. Puede convertirse en arena y manipularla a voluntad.",
+    "primeraAparicion": "The Amazing Spider-Man #4 (1963)",
+    "tipo": "villano",
+    "imagenUrl": "sandman.png"
+  }
+]
