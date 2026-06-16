@@ -1,10 +1,55 @@
 # Spider-Biblioteca
 
-Aplicación completa de biblioteca visual de personajes del universo Spider-Man.
+Aplicación de Android para explorar el universo Spider-Man. Tiene un backend en Spring Boot que gestiona los datos y una app Android hecha con Jetpack Compose. Es un proyecto del módulo DAM.
 
-- **Backend:** Java 17 + Spring Boot 3.3 + Hibernate/JPA + MySQL
-- **Frontend:** Android Kotlin + Jetpack Compose + Material Design 3
-- **Conexión:** Retrofit 2 + REST API
+**Backend:** Java 17 + Spring Boot + Hibernate/JPA + MySQL + JWT  
+**Android:** Kotlin + Jetpack Compose + Retrofit + Coil
+
+---
+
+## Qué puede hacer la app
+
+### Lo básico
+- Ver todos los personajes del universo Spider-Man en una lista
+- Entrar al detalle de cada personaje (poderes, descripción, primera aparición...)
+- Añadir, editar y borrar personajes (solo si tienes cuenta)
+- Buscar personajes por nombre o filtrar por tipo (héroe, villano, aliado, antihéroe)
+
+### Sistema de usuarios
+- Registro e inicio de sesión con usuario y contraseña
+- La sesión se guarda con un token JWT para no tener que hacer login cada vez
+- Perfil de usuario donde puedes ver tus favoritos y configurar la app
+
+### Favoritos
+- Puedes marcar personajes como favoritos desde su detalle
+- Los favoritos se guardan en el servidor y están vinculados a tu cuenta
+
+### Trajes de Spider-Man
+- Catálogo con todos los trajes de Spider-Man (clásico, simbionte, Iron Spider...)
+- Cada traje tiene descripción, habilidades, popularidad y primera aparición
+
+### Universos (Spider-Verse)
+- Lista de universos del multiverso Spider-Man (616, Ultimate, Spider-Noir...)
+- Detalle de cada universo: qué Spider-Man lo protagoniza, personajes importantes, estilo
+
+### Línea temporal
+- Cronología de los eventos más importantes de la historia de Spider-Man
+- Los eventos están organizados por etapas y tipos
+
+### Quiz
+- Mini juego de preguntas sobre Spider-Man
+- Puedes configurar antes de empezar cuántas preguntas quieres
+- Al terminar te dice cuántas has acertado
+
+### Mapa de relaciones
+- Muestra cómo se relacionan los personajes entre sí (aliados, enemigos, familia...)
+
+### Descubrir (aleatorio)
+- Pulsa un botón y te muestra un personaje, traje o universo al azar
+
+### Tema Simbionte
+- Desde el perfil puedes cambiar entre el tema rojo (Spider-Man clásico) y el tema oscuro simbionte
+- La preferencia se guarda y se mantiene al cerrar la app
 
 ---
 
@@ -12,49 +57,61 @@ Aplicación completa de biblioteca visual de personajes del universo Spider-Man.
 
 ```
 SpiderBiblioteca/
-├── README.md                        ← Este archivo
-├── spider-biblioteca-backend/       ← Proyecto Spring Boot (IntelliJ IDEA)
+├── README.md
+├── spider-biblioteca-backend/     ← Spring Boot (IntelliJ IDEA)
 │   ├── pom.xml
 │   ├── database.sql
-│   ├── personajes-ejemplo.json
-│   ├── README.md
-│   └── src/...
-└── spider-biblioteca-android/       ← Proyecto Android (Android Studio)
-    ├── app/build.gradle.kts
-    ├── gradle/libs.versions.toml
-    ├── settings.gradle.kts
-    ├── README.md
-    └── app/src/...
+│   └── src/
+│       └── main/java/com/joel/spiderbiblioteca/
+│           ├── controller/        ← Endpoints REST
+│           ├── service/           ← Lógica
+│           ├── repository/        ← Acceso a BD
+│           ├── model/             ← Entidades JPA
+│           ├── dto/               ← Objetos de transferencia
+│           ├── security/          ← JWT y filtros
+│           └── config/            ← CORS, seguridad, datos iniciales
+└── spider-biblioteca-android/     ← App Android (Android Studio)
+    └── app/src/main/java/com/joel/spiderbiblioteca/
+        ├── data/
+        │   ├── api/               ← Retrofit (llamadas al backend)
+        │   ├── model/             ← Modelos de datos
+        │   ├── repository/        ← Repositorios
+        │   ├── local/             ← Caché, sesión, tema, perfil
+        │   └── seed/              ← Datos locales (quiz, relaciones...)
+        ├── viewmodel/             ← ViewModels
+        ├── ui/
+        │   ├── screens/           ← Todas las pantallas
+        │   ├── components/        ← Componentes reutilizables
+        │   └── theme/             ← Colores y tipografía
+        └── navigation/            ← Rutas de navegación
 ```
 
 ---
 
-## Guía completa de puesta en marcha
+## Cómo ponerlo en marcha
 
 ### PASO 1: Iniciar MySQL con XAMPP
 
 1. Abre **XAMPP Control Panel**
-2. Pulsa **Start** en el módulo **MySQL**
-3. Verifica que el indicador se pone en verde
+2. Pulsa **Start** en **MySQL**
+3. Comprueba que se pone en verde
 
 ### PASO 2: Crear la base de datos
 
-1. En XAMPP, pulsa **Admin** en MySQL (abre phpMyAdmin)
-2. Haz clic en **Nueva** en el panel izquierdo
-3. Nombre: `spider_biblioteca`
-4. Cotejamiento: `utf8mb4_unicode_ci`
-5. Pulsa **Crear**
+1. En XAMPP pulsa **Admin** en MySQL (abre phpMyAdmin)
+2. Haz clic en **Nueva**
+3. Nombre: `spider_biblioteca`, cotejamiento: `utf8mb4_unicode_ci`
+4. Pulsa **Crear**
 
-> La tabla `personajes` se crea automáticamente cuando arrancas Spring Boot.
+> Las tablas las crea Hibernate automáticamente al arrancar el backend. Los datos de ejemplo (trajes, universos, timeline...) también se cargan solos gracias a `DataInitializer.java`.
 
 ### PASO 3: Abrir el backend en IntelliJ IDEA
 
-1. Abre **IntelliJ IDEA**
-2. File → Open → navega a `SpiderBiblioteca/spider-biblioteca-backend`
-3. Espera a que Maven descargue las dependencias (barra de progreso)
-4. Si hay errores, ve a Maven (panel derecho) → pulsa **Reload All Maven Projects**
+1. File → Open → abre la carpeta `spider-biblioteca-backend`
+2. Espera a que Maven descargue las dependencias
+3. Si hay errores, ve al panel Maven (derecha) → **Reload All Maven Projects**
 
-### PASO 4: Configurar credenciales de MySQL
+### PASO 4: Configurar las credenciales de MySQL
 
 Abre `src/main/resources/application.properties`:
 
@@ -63,229 +120,175 @@ spring.datasource.username=root
 spring.datasource.password=       # vacío si XAMPP no tiene contraseña
 ```
 
-### PASO 5: Ejecutar Spring Boot
+### PASO 5: Arrancar Spring Boot
 
 1. Abre `SpiderBibliotecaApplication.java`
-2. Pulsa el botón verde ▶ junto al método `main`
-3. Espera a ver en consola: `Started SpiderBibliotecaApplication`
+2. Pulsa el botón verde ▶ junto al `main`
+3. Espera a ver: `Started SpiderBibliotecaApplication`
 
-O desde terminal:
+O desde la terminal:
 ```bash
-cd SpiderBiblioteca/spider-biblioteca-backend
+cd spider-biblioteca-backend
 mvn spring-boot:run
 ```
 
 ### PASO 6: Verificar que el backend funciona
 
-Abre el navegador en:
+Abre en el navegador:
 ```
 http://localhost:8080/api/personajes
 ```
-Deberías ver `[]` (lista vacía si no has insertado datos).
+Si ves `[]` o datos JSON, está bien.
 
-### PASO 7: Insertar datos de ejemplo (opcional)
+### PASO 7: Abrir el Android en Android Studio
 
-Con Postman o cualquier cliente REST:
-- POST a `http://localhost:8080/api/personajes`
-- Body: copia un objeto del archivo `personajes-ejemplo.json`
+1. File → Open → abre la carpeta `spider-biblioteca-android`
+2. Espera a que Gradle sincronice (puede tardar un rato la primera vez)
+3. Si pide actualizar el Gradle Wrapper, acepta
 
-### PASO 8: Abrir el frontend en Android Studio
+### PASO 8: Comprobar la URL del backend
 
-1. Abre **Android Studio**
-2. File → Open → navega a `SpiderBiblioteca/spider-biblioteca-android`
-3. Espera a que Gradle sincronice las dependencias
-
-> Si es la primera vez, puede tardar varios minutos mientras descarga dependencias.
-
-### PASO 9: Verificar la URL del backend en Android
-
-Abre `RetrofitInstance.kt`:
+Abre `RetrofitInstance.kt` y verifica que la URL es correcta:
 
 ```kotlin
+// Para el emulador:
 private const val BASE_URL = "http://10.0.2.2:8080/"
+
+// Para móvil físico por WiFi:
+private const val BASE_URL = "http://192.168.1.X:8080/"
+// (cambia la X por tu IP, mírala con ipconfig en Windows)
 ```
 
-- `10.0.2.2` = la IP del ordenador host **desde el emulador Android**
-- Si usas **móvil físico**, usa tu IP local: `http://192.168.1.X:8080/`
-  (ejecuta `ipconfig` en Windows para ver tu IP)
+### PASO 9: Ejecutar en el emulador
 
-### PASO 10: Ejecutar en emulador
-
-1. En Android Studio, crea o selecciona un emulador (Device Manager)
+1. En Android Studio crea o selecciona un emulador desde Device Manager
 2. Pulsa ▶ Run
-3. La app se instalará y abrirá en el emulador
-
----
-
-## Diferencia entre localhost y 10.0.2.2
-
-| Contexto | URL correcta |
-|----------|-------------|
-| Navegador del PC | `http://localhost:8080` |
-| Emulador Android | `http://10.0.2.2:8080` |
-| Móvil físico (WiFi) | `http://192.168.1.X:8080` |
-
-**¿Por qué?** El emulador Android es una máquina virtual separada. Cuando el emulador dice "localhost", se refiere a sí mismo (la VM), no al PC. Para referirse al PC desde el emulador, se usa la IP especial `10.0.2.2`.
+3. La app debería abrir en la pantalla de login
 
 ---
 
 ## Endpoints de la API
 
-| Método | URL | Descripción |
-|--------|-----|-------------|
-| GET | `http://localhost:8080/api/personajes` | Todos los personajes |
-| GET | `http://localhost:8080/api/personajes/1` | Personaje con id=1 |
-| POST | `http://localhost:8080/api/personajes` | Crear personaje |
-| PUT | `http://localhost:8080/api/personajes/1` | Actualizar personaje |
-| DELETE | `http://localhost:8080/api/personajes/1` | Eliminar personaje |
-| GET | `http://localhost:8080/api/personajes/buscar?nombre=spider` | Buscar por nombre |
-| GET | `http://localhost:8080/api/personajes/tipo/heroe` | Filtrar por tipo |
+### Personajes
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| GET | `/api/personajes` | Todos los personajes |
+| GET | `/api/personajes/{id}` | Un personaje por ID |
+| POST | `/api/personajes` | Crear personaje |
+| PUT | `/api/personajes/{id}` | Editar personaje |
+| DELETE | `/api/personajes/{id}` | Borrar personaje |
+| GET | `/api/personajes/buscar?nombre=spider` | Buscar por nombre |
+| GET | `/api/personajes/tipo/heroe` | Filtrar por tipo |
+
+### Autenticación
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| POST | `/api/auth/register` | Registrar usuario |
+| POST | `/api/auth/login` | Iniciar sesión (devuelve token JWT) |
+| GET | `/api/auth/me` | Ver datos del usuario autenticado |
+
+### Favoritos (requiere token JWT)
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| GET | `/api/favoritos` | Ver mis favoritos |
+| POST | `/api/favoritos/{personajeId}` | Añadir a favoritos |
+| DELETE | `/api/favoritos/{personajeId}` | Quitar de favoritos |
+
+### Trajes
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| GET | `/api/trajes` | Todos los trajes |
+| GET | `/api/trajes/{id}` | Un traje por ID |
+
+### Universos
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| GET | `/api/universos` | Todos los universos |
+| GET | `/api/universos/{id}` | Un universo por ID |
+
+### Línea temporal
+| Método | URL | Qué hace |
+|--------|-----|----------|
+| GET | `/api/timeline` | Todos los eventos |
+| GET | `/api/timeline/{id}` | Un evento por ID |
 
 ---
 
-## Solución de errores típicos
+## Diferencia entre localhost y 10.0.2.2
 
-### 1. CLEARTEXT communication not permitted
+| Desde dónde | URL |
+|-------------|-----|
+| Navegador del PC | `http://localhost:8080` |
+| Emulador Android | `http://10.0.2.2:8080` |
+| Móvil físico (WiFi) | `http://192.168.1.X:8080` |
 
-```
-CLEARTEXT communication to 10.0.2.2 not permitted by network security policy
-```
+El emulador es una máquina virtual, así que su "localhost" apunta a sí mismo, no al PC. La IP `10.0.2.2` es la que usa el emulador para referirse al ordenador host.
 
-**Solución:** Añade en `AndroidManifest.xml` dentro de `<application>`:
+---
+
+## Errores típicos y cómo arreglarlos
+
+### CLEARTEXT communication not permitted
+La app no permite HTTP por defecto en Android 9+. Ya está solucionado en el `AndroidManifest.xml` con:
 ```xml
 android:usesCleartextTraffic="true"
 ```
-(Ya está incluido en el proyecto.)
 
----
+### Failed to connect to localhost
+Estás usando `localhost` desde el emulador. Cámbialo por `10.0.2.2` en `RetrofitInstance.kt`.
 
-### 2. Failed to connect to localhost
-
-```
-Failed to connect to localhost/127.0.0.1:8080
-```
-
-**Solución:** Cambia la URL en `RetrofitInstance.kt`:
-```kotlin
-// MAL (dentro del emulador):
-private const val BASE_URL = "http://localhost:8080/"
-
-// BIEN (IP del host desde el emulador):
-private const val BASE_URL = "http://10.0.2.2:8080/"
-```
-
----
-
-### 3. Puerto 8080 ocupado
-
-```
-Port 8080 is already in use
-```
-
-**Solución A:** Cambia el puerto en `application.properties`:
+### Puerto 8080 ocupado
 ```properties
+# En application.properties cambia el puerto:
 server.port=8081
 ```
-
-**Solución B:** Cierra el proceso que lo usa:
+O cierra el proceso que lo usa:
 ```cmd
 netstat -ano | findstr :8080
-taskkill /PID <número_pid> /F
+taskkill /PID <numero_pid> /F
 ```
 
----
+### MySQL no conecta
+1. Abre XAMPP y comprueba que MySQL está en verde
+2. Si no arranca, busca `mysqld.exe` en el Administrador de tareas y ciérralo
+3. Luego vuelve a iniciarlo desde XAMPP
 
-### 4. MySQL no conectado
-
-```
-Communications link failure / Unable to connect to MySQL
-```
-
-**Solución:**
-1. Abre XAMPP → verifica que MySQL está en verde
-2. Si no arranca, comprueba que el puerto 3306 no está ocupado
-3. Reinicia el servicio MySQL desde XAMPP
-
----
-
-### 5. Access denied for user 'root'
-
-```
-Access denied for user 'root'@'localhost'
-```
-
-**Solución:** Edita `application.properties`:
+### Access denied for user 'root'
 ```properties
 spring.datasource.password=tu_contraseña
 ```
-Si XAMPP sin contraseña, déjalo vacío: `spring.datasource.password=`
+Si XAMPP no tiene contraseña, déjalo vacío.
 
----
-
-### 6. Gradle no sincroniza en Android Studio
-
-**Solución:**
+### Gradle no sincroniza
 1. File → Invalidate Caches and Restart
 2. Build → Clean Project → Rebuild Project
-3. Comprueba que tienes conexión a Internet (necesita descargar dependencias)
-4. Verifica que el JDK está configurado: File → Project Structure → SDK Location
+3. Verifica que tienes internet (necesita descargar dependencias)
+
+### La app no muestra datos aunque el backend esté arrancado
+Mira el Logcat en Android Studio con el filtro `OkHttp`. Si ves `connection refused`, el backend no está corriendo o la URL es incorrecta.
+
+### Error CORS
+Ya está configurado en `CorsConfig.java`. Si sigue fallando, reinicia Spring Boot.
 
 ---
 
-### 7. App sin Internet / INTERNET permission denied
-
-**Solución:** Verifica que `AndroidManifest.xml` contiene:
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
-(Ya está incluido en el proyecto.)
-
----
-
-### 8. Error CORS desde el navegador o Android
-
-```
-CORS policy: No 'Access-Control-Allow-Origin' header
-```
-
-**Solución:** Ya está configurado en `CorsConfig.java` del backend.
-Si persiste, reinicia Spring Boot.
-
----
-
-## Comandos rápidos
-
-### Arrancar backend
-```bash
-cd SpiderBiblioteca/spider-biblioteca-backend
-mvn spring-boot:run
-```
-
-### Compilar sin ejecutar
-```bash
-mvn clean package
-```
-
-### Ver logs de MySQL (XAMPP)
-Abre XAMPP → MySQL → Logs
-
----
-
-## Tecnologías y versiones
+## Tecnologías usadas
 
 | Tecnología | Versión |
 |-----------|---------|
-| Java | 17+ |
+| Java | 17 |
 | Spring Boot | 3.3.5 |
-| Hibernate | Incluido en Spring Boot |
-| MySQL Connector | 9.x (gestionado por Spring Boot) |
+| Spring Security + JWT | incluido |
+| Hibernate/JPA | incluido en Spring Boot |
+| MySQL Connector | 9.x |
 | Maven | 3.8+ |
 | Kotlin | 2.0.21 |
-| Android Compose BOM | 2024.12.01 |
+| Jetpack Compose BOM | 2024.12.01 |
+| Navigation Compose | 2.8.5 |
 | Retrofit | 2.11.0 |
 | Coil | 2.7.0 |
-| Navigation Compose | 2.8.5 |
+| Coroutines | 1.9.0 |
 
 ---
 
-*Proyecto creado para el módulo DAM - Desarrollo de Aplicaciones Multiplataforma*
+*Proyecto de fin de módulo — DAM (Desarrollo de Aplicaciones Multiplataforma)*
